@@ -1,6 +1,6 @@
 from django import forms
 
-select_type = (
+selectop_typejob = (
         (1, "CLT - 8 Horas"),
         (2, "Consultoria - 4 Horas")
 )
@@ -43,12 +43,12 @@ class CadastroProducts(forms.Form):
     )
     
     
-    #type=forms.ChoiceField(
-    #        label="Qual é o tipo de contratação ?",
-    #        choices=select_type, 
-    #        widget=forms.ChoiceField,
-    #        required=True
-    #    )
+    type_job=forms.ChoiceField(
+            label="Qual é o tipo de contratação ?",
+            choices=selectop_typejob, 
+            required=True,
+            widget=forms.Select(attrs={'class': 'form-control'})  
+        )
 	
     
     category = forms.CharField(
