@@ -1,0 +1,64 @@
+{% extends 'opportunity/partials/base.html' %}
+{% load static %}
+{% load is_favorited %}
+{% block title %}
+    Empregos
+{% endblock %}
+
+{% block content %}
+
+    <section>
+         
+        <div class="container">
+           <h3 class="heading">Nós encontramos  <span class="accent"> {% len(jobs) %}</span> oportunidades zempregos</h3>
+            {% for job in jobs %}
+                <div class="job-listing ">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="{% static 'img/company-1.png' %}"
+                                         alt="company image " class="img-fluid">
+                                </div>
+                                <div class="col-10">
+                                    <h4 class="job__title"><a
+                                            href="">{{ job.title }}</a></h4>
+                                    <p class="job__company">
+                                        {{ job.company_name }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-10 col-md-3 col-lg-2 ml-auto">
+                            <i class="fa fa-map-marker job__location"></i>
+                            {{ job.location }}
+                        </div>
+                        <div class="col-10 col-md-3 col-lg-3 ml-auto">
+                            <p>Posted {{ job.created_at|timesince }}</p>
+                        </div>
+                        {% if user.is_authenticated and request.user.role == 'employee' %}
+                            <div class="col-sm-12 col-md-2 col-lg-1">
+                                <div class="job__star">
+                                    {% is_favorited job as is_already_favorited %}
+                                    {% if is_already_favorited %}
+                                        <a href="javascript:void(0)" data-toggle="tooltip" data-id="{{ job.id }}"
+                                           data-placement="top" title="Saved to favourites"
+                                           class="job__star__link favorite">
+                                            <i class="fa fa-star"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="javascript:void(0)" data-toggle="tooltip" data-id="{{ job.id }}"
+                                           data-placement="top" title="Save to favourites" class="job__star__link">
+                                            <i class="fa fa-star"></i>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}
