@@ -1,135 +1,46 @@
 from django import forms
+from produtos.models import Empregos
+
+
 
 select_type = (
         (1, "CLT - 8 Horas"),
         (2, "Consultoria - 4 Horas")
 )
 
-class CadastroProducts(forms.Form):
-    title=forms.CharField(
-        label='Nome do Cargo', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Ex.: Desenvolvedor C#, Desenvolvedor JS ',
-            }
-        )
-    )
-    
-    description=forms.CharField(
-        label='Descrição do Cargo', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Ex.: Como finalidade desenvolver sistemas utilizando a tecnologia ',
-            }
-        )
-    )
-    
-    location=forms.CharField(
-        label='Local de Trabalho', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Ex.: Remoto ou no escritório da empresa situado em São Paulo ',
-            }
-        )
-    )
-    
-    
-    #type=forms.ChoiceField(
-    #        label="Qual é o tipo de contratação ?",
-    #        choices=select_type, 
-    #        widget=forms.ChoiceField,
-    #        required=True
-    #    )
-	
-    
-    category = forms.CharField(
-        label='Categoria', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Ex.: Analista de Desenvolvimento/Desenvolvedor/Agile Master',
-            }
-        )
-    )
-    
-    last_date=forms.DateField(
-        required=True, 
-        widget=forms.DateInput(
-            attrs={
-                'class': 'form-control',
-                'type': 'date'
-                }
-            )
+class CadastroProducts(forms.ModelForm):
+    class Meta:
+        model = Empregos
+        fields = [
+            "title",
+            "description",
+            "location",
+            "type_job",
+            "category",
+            "last_date",
+            "company_name",
+            "company_description",
+            "website",
+            "salary",
+            "vacancy",
+            "filled",
+        ]
+        widgets = {
+            "title": forms.TextInput(attrs={"class": "form-control", "placeholder": "Título da vaga"}),
+            "description": forms.Textarea(attrs={"class": "form-control", "rows": 4}),
+            "location": forms.TextInput(attrs={"class": "form-control"}),
+            "type_job": forms.Select(attrs={"class": "form-select form-control"}),  # select automático pelos choices
+            "category": forms.TextInput(attrs={"class": "form-control"}),
+            "last_date": forms.DateInput(attrs={"type": "datetime-local", "class": "form-control"}),
+            "company_name": forms.TextInput(attrs={"class": "form-control"}),
+            "company_description": forms.Textarea(attrs={"class": "form-control", "rows": 3}),
+            "website": forms.URLInput(attrs={"class": "form-control"}),
+            "salary": forms.NumberInput(attrs={"class": "form-control"}),
+            "vacancy": forms.NumberInput(attrs={"class": "form-control"}),
+            "filled": forms.CheckboxInput(attrs={"class": "form-check-input"}),
+        }
         
-    )
     
-    company_name=forms.CharField(
-        label='Nome da Empresa', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Nome da Empresa',
-            }
-        )
-    )
-    
-    company_description=forms.CharField(
-        label='Descrição da Empresa', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Descrição da Empresa',
-            }
-        )
-    )
-    
-    website=forms.CharField(
-        label='Website da Empresa', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Website da Empresa',
-            }
-        )
-    )
-    
-    vacancy=forms.IntegerField(
-        label="Quantidade de Vagas",
-        min_value='1',
-        max_value='10',
-    )
-    
-    salary=forms.FloatField(
-        label="Salario oferecido",
-        min_value=0.01,
-        max_value=10000.00,
-        required=True,
-        help_text="Ex. Informe o Salário oferecido!"
-    )
-    
-    status=forms.BooleanField(
-        label="A vaga está ativa ?", 
-        required=True, 
-        initial=False
-    )
-  
     
     
  
