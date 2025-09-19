@@ -3,7 +3,7 @@ from produtos.models import Empregos
 from produtos.forms import CadastroProducts
 from django.contrib import messages
 
-
+ 
 def home(request):
     
     jobs = Empregos.objects.all()
