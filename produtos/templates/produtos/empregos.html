@@ -57,6 +57,23 @@
                         {% endif %}
                     </div>
                 </div>
+                <div class="col-sm-12 col-md-2 col-lg-1">
+                                <div class="job__star">
+                                    {% is_favorited job as is_already_favorited %}
+                                    {% if is_already_favorited %}
+                                        <a href="javascript:void(0)" data-toggle="tooltip" data-id="{{ job.id }}"
+                                           data-placement="top" title="Saved to favourites"
+                                           class="job__star__link favorite">
+                                            <i class="fa fa-star"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="javascript:void(0)" data-toggle="tooltip" data-id="{{ job.id }}"
+                                           data-placement="top" title="Save to favourites" class="job__star__link">
+                                            <i class="fa fa-star"></i>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
             {% endfor %}
         </div>
     </section>

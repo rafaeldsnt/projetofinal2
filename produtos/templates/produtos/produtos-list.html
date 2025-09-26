@@ -1,0 +1,35 @@
+{% extends 'produtos/partials/base.html' %}
+{% load static %}
+{% block title %}
+    Empregos
+{% endblock %}
+
+{% block content %}
+
+    <section>
+        <div class="container">
+                
+                        {% for job in jobs %}
+                        <div class="card w-100 ">
+                        <div class="card-body"  >
+                            <h5 class="card-title"><strong>Título :</strong> {{ job.title }}</h5>
+                            <p class="card-text"><strong>Descrição: </strong> {{ job.description | truncatewords_html:30 | safe }}</p>
+                            <p class="card-text"><strong>Tipo de Contratação :</strong>
+                                {% if job.type_job == '1' %}
+                                        <span class="badge featured-badge badge-success">CLT</span>
+                                    {% elif job.type_job == '2' %}
+                                        <span class="badge featured-badge badge-primary">Consultoria</span>
+                                    {% else %}
+                                        <span style="color: #ffffff;" class="badge featured-badge badge-warning">Interesse</span>
+                                    {% endif %}</p>
+                            <p class="card-text"><strong>Nome da Empresa Solicitante :</strong> {{ job.company_name }}</p>
+                            <p class="card-text"><strong>Data de Cadastrado :</strong> {{ job.last_date|timesince }}</p>
+                            <a href="#" class="btn btn-primary {% if job.filled  == False %}disabled{% endif %} " >Visualizar Oportunidade</a>  <a href="#" class="btn btn-warning {% if job.filled  == False %}disabled{% endif %} ">Editar Oportunidade</a>  <a href="#" class="btn btn-danger {% if job.filled  == False %}disabled{% endif %} ">Excluir Oportunidade</a>  
+                        </div>
+                        </div>
+                        {% endfor %}
+                
+        </div>
+        </section>
+
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from produtos.models import Empregos
-from produtos.forms import CadastroProducts
+from .models import Empregos
+from django.contrib.auth.models import User
+from .forms import EmpregosForm
 from django.contrib import messages
 
  
@@ -15,15 +16,21 @@ def home(request):
 
 def registerProduct(request):
     titleform = "Cadastro de Oportunidade"
-    
     if request.method == "POST":
-        form = CadastroProducts(request.POST)
-        template = "produtos/register.html"
-        context = {}
+        form = EmpregosForm(request.POST)
         if form.is_valid(): 
             form.save()
             messages.success(request, 'Cadastro efetuado com sucesso!')
             return redirect('accounts:login')
+        else:
+            messages.error(request, form.errors.keys)
+            return redirect('produtos:register')
     else:
-        form = CadastroProducts()
+        form = EmpregosForm()
         return render(request, 'produtos/register.html', {'form': form,'title' : titleform })
+    
+def listProduct(request):
+     jobs = Empregos.objects.all()
+     
+     return render(request, 'produtos/produtos-list.html', {'jobs': jobs} )
+ 

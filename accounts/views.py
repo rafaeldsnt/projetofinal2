@@ -60,3 +60,8 @@ def logout(request):
         auth.logout(request)
         messages.success(request, 'Logout efetuado com sucesso!')
         return redirect('produtos:home')
+    
+def Listusuarios(request):
+    users_systems = User.objects.all()
+    print(users_systems)
+    return render(request, 'accounts/users-list.html', {'users': users_systems} ) 

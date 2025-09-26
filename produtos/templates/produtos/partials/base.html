@@ -104,7 +104,7 @@
                                 <a href="" class="nav-link">Favorites</a>
                             </li>
                             <li class="nav-item ">
-                                <a href="" class="nav-link">My Applications</a>
+                                <a href="" class="nav-link">MAplicações do Site</a>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -121,12 +121,11 @@
 
                                 </a>
                                 <div aria-labelledby="clientZone" class="dropdown-menu">
-                                    <a href=""
-                                       class="dropdown-item"
+                                    <a href="{% url 'produtos:listProduct' %}" class="dropdown-item"
                                     >
-                                        Edit Profile
+                                        Lista de Oportunidades
                                     </a>
-                                    <a href="" class="dropdown-item">My resumes</a>
+                                    <a href="{% url 'accounts:listUsuarios' %}" class="dropdown-item">Lista de Uusários</a>
                                     <a href="" class="dropdown-item">Logout</a>
                                 </div>
                             </li>

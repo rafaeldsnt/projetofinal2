@@ -65,11 +65,11 @@
                                 <p class="featured__details"><i class="fa fa-map-marker job__location"></i>
                                     {{ job.location }}
                                     {% if job.type == '1' %}
-                                        <span class="badge featured-badge badge-success">Full time</span>
+                                        <span class="badge featured-badge badge-success">CLT</span>
                                     {% elif job.type == '2' %}
-                                        <span class="badge featured-badge badge-primary">Part time</span>
+                                        <span class="badge featured-badge badge-primary">Consultoria</span>
                                     {% else %}
-                                        <span style="color: #ffffff;" class="badge featured-badge badge-warning">Internship</span>
+                                        <span style="color: #ffffff;" class="badge featured-badge badge-warning">Interesse</span>
                                     {% endif %}
                                 </p>
                                 {% for tag in job.tags.all %}
