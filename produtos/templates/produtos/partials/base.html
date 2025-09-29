@@ -121,12 +121,11 @@
 
                                 </a>
                                 <div aria-labelledby="clientZone" class="dropdown-menu">
-                                    <a href=""
-                                       class="dropdown-item"
+                                    <a href="{% url 'produtos:listProduct' %}" class="dropdown-item"
                                     >
-                                        Edit Profile
+                                        Lista de Oportunidades
                                     </a>
-                                    <a href="" class="dropdown-item">My resumes</a>
+                                    <a href="{% url 'accounts:listUsuarios' %}" class="dropdown-item">Lista de Uusários</a>
                                     <a href="" class="dropdown-item">Logout</a>
                                 </div>
                             </li>
@@ -182,7 +181,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            {#<li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>#}
         {% endfor %}
 
     {% endif %}

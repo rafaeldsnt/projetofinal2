@@ -1,137 +1,38 @@
 from django import forms
+from .models import Empregos
 
-selectop_typejob = (
-        (1, "CLT - 8 Horas"),
-        (2, "Consultoria - 4 Horas")
-)
+FORMATO_BR = '%d/%m/%Y'
 
-class CadastroProducts(forms.Form):
-    title=forms.CharField(
-        label='Nome do Cargo', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Ex.: Desenvolvedor C#, Desenvolvedor JS ',
-            }
-        )
-    )
-    
-    description=forms.CharField(
-        label='Descrição do Cargo', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Ex.: Como finalidade desenvolver sistemas utilizando a tecnologia ',
-            }
-        )
-    )
-    
-    location=forms.CharField(
-        label='Local de Trabalho', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Ex.: Remoto ou no escritório da empresa situado em São Paulo ',
-            }
-        )
-    )
-    
-    
-    type_job=forms.ChoiceField(
-            label="Qual é o tipo de contratação ?",
-            choices=selectop_typejob, 
-            required=True,
-            widget=forms.Select(attrs={'class': 'form-control'})  
-        )
-	
-    
-    category = forms.CharField(
-        label='Categoria', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Ex.: Analista de Desenvolvimento/Desenvolvedor/Agile Master',
-            }
-        )
-    )
-    
-    last_date=forms.DateField(
-        required=True, 
-        widget=forms.DateInput(
-            attrs={
-                'class': 'form-control',
-                'type': 'date'
-                }
-            )
-        
-    )
-    
-    company_name=forms.CharField(
-        label='Nome da Empresa', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Nome da Empresa',
-            }
-        )
-    )
-    
-    company_description=forms.CharField(
-        label='Descrição da Empresa', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Descrição da Empresa',
-            }
-        )
-    )
-    
-    website=forms.CharField(
-        label='Website da Empresa', 
-        required=True, 
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Website da Empresa',
-            }
-        )
-    )
-    
-    vacancy=forms.IntegerField(
-        label="Quantidade de Vagas",
-        min_value='1',
-        max_value='10',
-    )
-    
-    salary=forms.FloatField(
-        label="Salario oferecido",
-        min_value=0.01,
-        max_value=10000.00,
-        required=True,
-        help_text="Ex. Informe o Salário oferecido!"
-    )
-    
-    status=forms.BooleanField(
-        label="A vaga está ativa ?", 
-        required=True, 
-        initial=False
-    )
-  
-    
-    
+class EmpregosForm(forms.ModelForm):
+    class Meta:
+        model = Empregos
+        fields = [
+            "title",
+            "description",
+            "location",
+            "job_option",
+            "category",
+            "last_date",
+            "company_name",
+            "company_description",
+            "website",
+            "salary",
+            "vacancy",
+            "filled",
+        ] 
+        widgets = {
+            "title": forms.TextInput(attrs={"class": "form-control", "placeholder": "Título da vaga"}),
+            "description": forms.Textarea(attrs={"class": "form-control", "rows": 4}),
+            "location": forms.TextInput(attrs={"class": "form-control"}),
+            "job_option": forms.Select(attrs={"class": "form-select", "class": "form-control"}),  # select automático pelos choices
+            "category": forms.TextInput(attrs={"class": "form-control"}),
+            "last_date": forms.DateInput(format=FORMATO_BR, attrs={"type": "date", "class": "form-control"} ),
+            "company_description": forms.Textarea(attrs={"class": "form-control", "rows": 3}),
+            "website": forms.URLInput(attrs={"class": "form-control"}),
+            "salary": forms.NumberInput(attrs={"class": "form-control"}),
+            "vacancy": forms.NumberInput(attrs={"class": "form-control"}),
+            "filled": forms.CheckboxInput(attrs={"class": "form-check-input"}),
+        }
  
 
         

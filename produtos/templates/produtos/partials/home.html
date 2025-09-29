@@ -44,9 +44,9 @@
             </div>
         </div>
     </section>
-    <section class="bg-light-gray">
+<section class="bg-light-gray">
         <div class="container">
-            <h3 class="heading">Oportunidades de Emprego</h3>
+            <h3 class="heading">Oportunidades de Emprego.  Foram encontradas: {{total}} oportunidade(s)</h3>
             <div class="row featured align-items-stretch">
                 {% for job in jobs %}
                     <div class="col-lg-4 mb-5 mb-lg-0">
@@ -60,16 +60,18 @@
                                         <img src="{% static 'img/company-1.png' %}" alt="" style="max-width: 80px;">
                                     </div>
                             </div>
-                            <div class="content">
+                            <div class="content ">
+                                {% if request.user.is_authenticated %}
                                 <h5><a href="">{{ job.title }}</a></h5>
+                                {% endif %}
                                 <p class="featured__details"><i class="fa fa-map-marker job__location"></i>
-                                    {{ job.location }}
-                                    {% if job.type == '1' %}
-                                        <span class="badge featured-badge badge-success">Full time</span>
-                                    {% elif job.type == '2' %}
-                                        <span class="badge featured-badge badge-primary">Part time</span>
+                                    {{ job.job_option }}
+                                    {% if job.job_option == '1' %}
+                                        <span class="badge featured-badge badge-success">CLT</span>
+                                    {% elif job.job_option == '2' %}
+                                        <span class="badge featured-badge badge-primary">Consultoria</span>
                                     {% else %}
-                                        <span style="color: #ffffff;" class="badge featured-badge badge-warning">Internship</span>
+                                        <span style="color: #ffffff;" class="badge featured-badge badge-warning">Interesse</span>
                                     {% endif %}
                                 </p>
                                 {% for tag in job.tags.all %}
@@ -83,8 +85,7 @@
                 {% endfor %}
             </div>
         </div>
-    </section>
-    
+    </section>    
    
 
 {% endblock %}
