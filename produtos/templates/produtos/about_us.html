@@ -1,0 +1,58 @@
+{% extends 'produtos/partials/base.html' %}
+{% load static %}
+{% block title %}
+    Sobre nós
+{% endblock %}
+
+{% block content %}
+    <section class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="heading">Nossa <span class="accent">Missão</span></h1>
+                    <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="box">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4>Lorem Ipsum</h4>
+                                <p>Donec sodales purus tellus, ut rhoncus lectus lacinia a. Vestibulum lacinia sem vel finibus finibus. Aenean iaculis leo et ante maximus sagittis.</p>
+                                
+                                <h4 class="mt-5">What We Offer</h4>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-check text-primary mr-2"></i> Integer viverra lectus magna, quis consectetur risus </li>
+                                    <li><i class="fa fa-check text-primary mr-2"></i> Quisque iaculis ligula fringilla, maximus tortor ullamcorper, faucibus erat</li>
+                                    <li><i class="fa fa-check text-primary mr-2"></i> Nullam gravida scelerisque urna sit amet mattis.</li>
+                                    <li><i class="fa fa-check text-primary mr-2"></i> Curabitur finibus congue nisi</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <img src="{% static 'img/company-1.png' %}" alt="About Us" class="img-fluid rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-divider">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>Duis vel venenatis neque?</p>
+                    <p><a href="{% url 'produtos:listProduct' %}" class="btn btn-outline-light">Procure suas Oportunidades</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

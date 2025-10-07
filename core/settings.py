@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'produtos',
     "accounts",
+    "summary_qualif",
+      # pip installed at the bottom
+    'widget_tweaks',
+    
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

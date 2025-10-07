@@ -7,6 +7,12 @@
 {% block content %}
 
     <section>
+
+        <div class="d-flex justify-content-between align-items-left mb-4">
+            <h3>Nossos Produtos</h3>
+            <a href="{% url 'produtos:register' %}" class="btn btn-success">Adicionar Novo Produto</a>
+        </div>
+
         <div class="container">
                 
                         {% for job in jobs %}
@@ -24,7 +30,7 @@
                                     {% endif %}</p>
                             <p class="card-text"><strong>Nome da Empresa Solicitante :</strong> {{ job.company_name }}</p>
                             <p class="card-text"><strong>Data de Cadastrado :</strong> {{ job.last_date }}</p>
-                            <a href="#" class="btn btn-primary {% if job.filled  == False %}disabled{% endif %} " >Visualizar Oportunidade</a>  <a href="#" class="btn btn-warning {% if job.filled  == False %}disabled{% endif %} ">Editar Oportunidade</a>  <a href="#" class="btn btn-danger {% if job.filled  == False %}disabled{% endif %} ">Excluir Oportunidade</a>  
+                            <a href="#" class="btn btn-primary {% if job.filled  == False %}disabled{% endif %} " >Visualizar Oportunidade</a>  <a href="{% url 'produtos:produto_update' job.pk  %}" class="btn btn-warning {% if job.filled  == False %}disabled{% endif %} ">Editar Oportunidade</a>  <a href="{% url 'produtos:produto_delete' job.pk  %}" class="btn btn-danger {% if job.filled  == False %}disabled{% endif %} ">Excluir Oportunidade</a>  
                         </div>
                         </div>
                         {% endfor %}

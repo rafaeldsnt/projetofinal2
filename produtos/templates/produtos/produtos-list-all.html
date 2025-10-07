@@ -1,49 +1,48 @@
 {% extends 'produtos/partials/base.html' %}
 {% load static %}
-{% load i18n %}
 {% block title %}
-    Home
+    Empregos
 {% endblock %}
 
 {% block content %}
 
-    <section class="job-form-section job-form-section--image">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="job-form-box">
-                        <h2 class="heading">Encontre seu <span class="accent">trabalho</span>.
-                        </h2>
-                        <form id="job-main-form" method="get" action="" class="job-main-form">
-                            <div class="controls">
-                                <div class="row align-items-center">
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label for="profession">{% trans 'Cargo' %}</label>
-                                            <input type="text" id="profession" name="position"
-                                                   placeholder="Busque sua oportunidade" class="form-control">
-                                        </div>
-                                    </div>            
-                                    <div class="col-md-2">
-                                        <button type="submit" class="btn btn-outline-white-primary job-main-form__button">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
-                                        </button>
+                <section class="job-form-section job-form-section--image">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8 mx-auto">
+                                    <div class="job-form-box">
+                                        <h2 class="heading">Encontre seu <span class="accent">trabalho</span>.
+                                        </h2>
+                                        <form id="job-main-form" method="get" action="" class="job-main-form">
+                                            <div class="controls">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label for="profession">Cargo</label>
+                                                            <input type="text" id="profession" name="position"
+                                                                placeholder="Busque sua oportunidade" class="form-control">
+                                                        </div>
+                                                    </div>            
+                                                    <div class="col-md-2">
+                                                        <button type="submit" class="btn btn-outline-white-primary job-main-form__button">
+                                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<section class="bg-light-gray">
-        <div class="container">
-            <h3 class="heading">Oportunidades de Emprego.  Foram encontradas: {{total}} oportunidade(s)</h3>
+                        </div>
+                    </section>
+
+    <section>
+          <h3 class="heading">Oportunidades de Emprego.  Foram encontradas: {{total}} oportunidade(s)</h3>
             <div class="row featured align-items-stretch">
                 {% for job in jobs %}
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="box-image-text bg-visible full-height">
+                    <div class="col-lg-2 mb-5 mb-lg-5">
+                        <div class="box-image-text">
                             <div class="top">
                                     <div class="image">
                                         <img src="{% static 'img/featured1.jpg' %}" alt="" class="img-fluid">
@@ -55,7 +54,7 @@
                             </div>
                             <div class="content ">
                                 {% if request.user.is_authenticated %}
-                                <h5><a href="">{{ job.title }}</a></h5>
+                                <h5><a href="{% url 'produtos:listdetails' job.pk %}">{{ job.title }}</a></h5>
                                  {% else %}
                                   <h5>{{ job.title }}</h5>
                                   {% endif %}
@@ -97,8 +96,6 @@
                     </div>
                 {% endfor %}
             </div>
-        </div>
-    </section>    
-   
+        </section>
 
 {% endblock %}

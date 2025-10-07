@@ -37,7 +37,8 @@ def register(request):
         form = CadastroForms(request.POST)
 
         if form.is_valid():
-            nome=form['nome_cadastro'].value()
+            nome=form['frist_nome_usuario'].value()
+            lastname = form['last_nome_usuario'].value()
             email=form['email'].value()
             senha=form['senha_1'].value()
 
@@ -47,6 +48,8 @@ def register(request):
 
             usuario = User.objects.create_user(
                 username=nome,
+                first_name=nome,
+                last_name = lastname,
                 email=email,
                 password=senha
             )

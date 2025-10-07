@@ -1,0 +1,31 @@
+{% extends 'produtos/partials/base.html' %}
+{% load static %}
+{% block title %}
+    Empregos
+{% endblock %}
+
+{% block content %}
+
+    <section>
+
+        <div class="d-flex justify-content-between align-items-left mb-4">
+            <h3>Nossos Especialidade</h3>
+            <a href="{% url 'produtos:speregister' %}" class="btn btn-success">Adicionar Nova Especiallidade</a>
+        </div>
+
+        <div class="container">
+                
+                        {% for specialty in specialtys %}
+                        <div class="card w-100 ">
+                        <div class="card-body"  >
+                            <h5 class="card-title"><strong>Título :</strong> {{ specialty.identificacao }}</h5>
+                            <p class="card-text"><strong>Descrição: </strong> {{ specialty.descricao | truncatewords_html:30 | safe }}</p>
+                             <a href="{% url 'produtos:speregister_update' specialty.pk %}" class="btn btn-warning">Editar Especialidade</a>  <a href="{% url 'produtos:speregister_delete' specialty.pk  %}" class="btn btn-danger">Excluir Especialidade</a>  
+                        </div>
+                        </div>
+                        {% endfor %}
+                
+        </div>
+        </section>
+
+{% endblock %}
