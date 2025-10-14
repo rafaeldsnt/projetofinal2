@@ -37,11 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "corsheaders",
     'crispy_forms',
     'crispy_bootstrap5',
     'produtos',
     "accounts",
     "summary_qualif",
+    "rhmanager",
+    "stock",
+    "noticeboard",
+    
       # pip installed at the bottom
     'widget_tweaks',
     
@@ -59,6 +64,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -131,22 +138,21 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-# Caminho onde o Django vai procurar por arquivos estáticos nas aplicações (aula 10)
+
 STATIC_URL = 'static/'
 
-# Diretórios adicionais onde o Django vai procurar por arquivos estáticos (aula 10)
-# Apontamos diretamente para a pasta 'static' na raiz do projeto
+
 STATICFILES_DIRS = [
-            BASE_DIR / 'static', # Usando o operador de divisão (/) para unir caminhos
+            BASE_DIR / 'static', 
     ]
 
-# O diretório onde os arquivos estáticos serão coletados para produção (aula 10)
-STATIC_ROOT = BASE_DIR / 'staticfiles' # Mais uma vez, usando o operador /
+
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
 
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'static'
 
 
 # Default primary key field type

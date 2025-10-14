@@ -1,0 +1,40 @@
+{% extends 'produtos/partials/base.html' %}
+{% load widget_tweaks %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-6 offset-3 mt-3">
+        <div class="box">
+            <h3 class="heading">{{title}}</h3>
+            {% if form.errors %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+           <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                            {% render_field field class="form-control" %}
+                            {% if field.errors %}
+                                <div class="text-danger">{{ field.errors }}</div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+        </div>
+    </div>
+
+     <div class="col-lg-3 mt-3">
+    </div>
+</div>
+{% endblock %}

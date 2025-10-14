@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% block title %} {% endblock %} - Django Jobs</title>
+    <title>{% block title %} {% endblock %} Oportunidades </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -64,14 +64,14 @@
                              <a href="{% url 'produtos:allproducts' %}" class="nav-link">Oportunidades</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'summary_qualif:listResumeCV' %}" class="nav-link">Crie seu CV</a>
+                            <a href="{% url 'summary_qualif:listResumeCV' %}" class="nav-link">Seu Curriculum</a>
                         </li>
                         <li class="nav-item">
                             <a href="{% url 'produtos:aboutus' %}" class="nav-link">Sobre nós</a>
                         </li>
 
                         <li class="nav-item ">
-                                <a href="" class="nav-link">Favorites</a>
+                                 <a href="{% url 'noticeboard:listProduct' %}" class="nav-link">Avisos</a>
                         </li>
                            <li class="nav-item dropdown ">
                                 <a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -87,7 +87,11 @@
                                     >
                                         Lista de Especialidade
                                     </a>
-                                    <a href="" class="dropdown-item">Logout</a>
+                                     <a href="{% url 'rhmanager:listorderurs' %}" class="dropdown-item"
+                                    >
+                                        Lista de Solicitações de Oportunidades
+                                    </a>
+                                   
                                 </div>
                             </li>
                         
@@ -168,13 +172,13 @@
                 </div>
                 <div class="col-lg-4 col-md-12 mb-5">
                     <h4 class="h5">Siga-nos!</h4>
-                    <a href="https://www.facebook.com/django-jobs" target="_blank" rel="noopener">
+                    <a href="#" target="_blank" rel="noopener">
                         <i class="fab fa-facebook-f"></i> Facebook
                     </a>
-                    <a href="https://www.twitter.com/django-jobs" target="_blank" rel="noopener">
+                     <a href="#" target="_blank" rel="noopener">
                         <i class="fab fa-twitter"></i> Twitter
                     </a>
-                    <a href="https://www.linkedin.com/company/django-jobs" target="_blank" rel="noopener">
+                     <a href="#" target="_blank" rel="noopener">
                         <i class="fab fa-linkedin-in"></i> LinkedIn
                     </a>
                 </div>

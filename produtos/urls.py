@@ -1,7 +1,7 @@
 from produtos.views import (home, listProduct, FavoriteListView, AboutUs,
                            ProdutoUpdateView, ProdutoDeleteView, ProdutoCreateNew, SpecialtyDefendantCreateNew,
                            SpecialtyDefendantDetailView, SpecialtyDefendantUpdateView,  SpecialtyDefendantDeleteView, 
-                           listAllProducts, OportunityAllDetailView)
+                           listAllProducts, OportunityAllDetailView, AppliedjobCreateNew)
 from django.urls import path
 
 
@@ -16,6 +16,8 @@ urlpatterns = [
     path("favorites", FavoriteListView, name="employee-favorites"),
     
     path('listdetails/<int:pk>/', OportunityAllDetailView.as_view(), name='listdetails'),
+    
+    path('applyjob/', AppliedjobCreateNew.as_view(), name='applytojob'),
     
     path('allproducts/', listAllProducts , name='allproducts'),
    

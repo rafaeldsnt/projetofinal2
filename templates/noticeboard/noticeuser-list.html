@@ -1,0 +1,37 @@
+{% extends 'produtos/partials/base.html' %}
+{% load static %}
+{% block title %}
+    Empregos
+{% endblock %}
+
+{% block content %}
+
+    <section>
+        <div class="container">
+                
+                        {% for notice in notices %}
+                        <div class="card w-100 ">
+                        <div class="card-body"  >
+                            <h5 class="card-title"><strong>Notícia criada em :</strong> {{ notice.created_at }}</h5>
+                            <h5 class="card-title"><strong>Título :</strong> {{ notice.job.title }} na <strong>Enpresa<strong>  {{ notice.job.company_name }}</h5>
+                            <p class="card-text"><strong>Decisão do RH :</strong>
+                                {% if notice.approvedselection == True %}
+                                        <span class="badge featured-badge badge-success">Aprovado</span>
+                                        <div class="container-fluid">
+                                                 <img src="{% static 'img/aprovado.jpg' %}" alt="logo" class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
+                                        </div>
+                                    {% elif notice.approvedselection == False %}
+                                        <span class="badge featured-badge badge-primary">Tente novamente</span>
+                                        <div class="container-fluid">
+                                                <img src="{% static 'img/tente-novamente.jpg' %}" alt="logo" class="rounded mx-auto d-block"  style="width: 400px; height: 400px;">
+                                        </div>
+                                {% endif %}</p>
+                             <p class="card-text"><strong>Descrição: </strong> {{ notice.rh_observation }}</p>  
+                        </div>
+                        </div>
+                        {% endfor %}
+                
+        </div>
+        </section>
+
+{% endblock %}

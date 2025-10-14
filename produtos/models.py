@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
 JOB_TYPE = [("0", "Selecione uma opção"), ("1", "CLT - 8  horas"), ("2", "Consultoria - 8 horas")]
-
+APPROVED_CHOICES = [("0", "Selecione uma opção"), ("1", "Aprovado"), ("2", "Rejeitado")]
 
 class SpecialtyDefendant(models.Model):
     identificacao = models.CharField(max_length=100, 
@@ -37,10 +37,7 @@ class Empregos(models.Model):
     class Meta:
         ordering = ["id"]
 
-    
-    class Meta:
-        verbose_name = "Tag"
-        verbose_name_plural = "Tags"
+
     
     
 class Favorite(models.Model):
@@ -48,6 +45,16 @@ class Favorite(models.Model):
     job = models.ForeignKey(Empregos, on_delete=models.CASCADE, related_name="favorites")
     created_at = models.DateTimeField(default=timezone.now)
     soft_deleted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.job.title
+
+
+class Appliedjob(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    job = models.ForeignKey(Empregos, on_delete=models.CASCADE)
+    observation = models.TextField(verbose_name="Crei uma carta de Apresentação", max_length=300)
+    created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.job.title

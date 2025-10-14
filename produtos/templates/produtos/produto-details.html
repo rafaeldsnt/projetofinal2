@@ -42,13 +42,9 @@
                         <p>{{ job.description | safe }}</p>
                     </blockquote>
                     <div class="job-detail__apply-bottom">
-                                <input type="button" class="btn btn-outline-white-primary" value="Already applied"/>
-                                <form action="#" method="post">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="job" value="{{ job.id }}">
-                                    <input type="submit" class="btn btn-outline-white-primary"
-                                           value="Apply for this job"/>
-                                </form>
+                                    <input type="hidden" name="jobid" value="{{ job.id }}">
+                                     <a href="{% url 'produtos:applytojob'%}?idjob={{job.pk}}" >  <input type="submit" class="btn btn-outline-white-primary"
+                                           value="Candidatar ao cargo"/> </a>
                     </div>
                 </div>
                 <div class="col-lg-1"></div>

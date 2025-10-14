@@ -20,11 +20,11 @@
                         <div class="card-body"  >
                             <h5 class="card-title"><strong>Nome : {{ cv.name }}</h5>
                             <p class="card-text"><strong>Email: </strong> {{ cv.email }}</p>
-                            <a href="#" class="btn btn-primary" >Visualizar Curriculum </a>  <a href="#" class="btn btn-warning ">Editar Curriculum</a>  
+                            <a href="#" class="btn btn-primary" >Visualizar Curriculum </a>  <a href="{% url 'summary_qualif:editregister' cv.pk %}" class="btn btn-warning ">Editar Curriculum</a>  
                         </div>
                         </div>
                         {% empty %}
-                              <a href="{% url 'produtos:register' %}" class="btn btn-success">Adicionar Curriculum </a>
+                              <a href="{% url 'summary_qualif:register' %}" class="btn btn-success">Adicionar Curriculum </a>
                         {% endfor %}         
                 
         </div>

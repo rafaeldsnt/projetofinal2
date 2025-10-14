@@ -1,0 +1,35 @@
+{% extends 'produtos/partials/base.html' %}
+{% load static %}
+{% block title %}
+    Empregos
+{% endblock %}
+
+{% block content %}
+
+    <section>
+
+        <div class="d-flex justify-content-between align-items-left mb-4">
+            <h3>Lista de Oportunidades</h3>
+           
+        </div>
+
+        <div class="container">
+                
+                        {% for decision in rhdecision %}
+                        <div class="card w-100 ">
+                        <div class="card-body"  >
+                            <h5 class="card-title"><strong>Codigo da Solicitação : {{ decision.pk }}</h5>
+                            <h5 class="card-title"><strong>Nome : {{ decision.user }}</h5>
+                            <h5 class="card-text"><strong>Vaga pretendia: </strong> {{ decision.job.title }}<h5>
+                            <h5 class="card-text"><strong>Empresa: </strong> {{ decision.job.company_name }}<h5> 
+                            <a href="{% url 'rhmanager:editorderurs' decision.pk %}" class="btn btn-warning ">Realizar a análise</a>  
+                        </div>
+                        </div>
+                        {% empty %}
+                              <h5 class="card-title"><strong>Não foram encontradas nenhuma solicitação</h5>
+                        {% endfor %}         
+                
+        </div>
+        </section>
+
+{% endblock %}
